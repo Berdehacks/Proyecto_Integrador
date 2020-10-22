@@ -87,9 +87,9 @@ for i in listaModelos:
 # print(ventasTotales)
 ventasVendedor = {}
 for i in listaVendedores:
-    ventasVendedor[i] = (
-        (Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1']))
-# print(ventasVendedor)
+    ventasVendedor[i] = ((Ventas[i]['Air Force 1'])+(Ventas[i]['Yeezy'])+(Ventas[i]['Ultra Range'])+(
+        Ventas[i]['Air Max'])+(Ventas[i]['Ralph Sampson'])+Ventas[i]['Ultra Boost'] + Ventas[i]['Skyve Max'])
+print(ventasVendedor)
 
 
 def registrar_venta():
@@ -155,13 +155,45 @@ def consultar_vendedor():
 
 
 def reporte_ventas():
-    matricula =
-    reporte = open()
+    matricula = str(input('Ingrese matricula del vendedor: '))
+    while True:
+        if (matricula in listaVendedores):
+            nombre_reporte = (f'{matricula}_reporteVentas.txt')
+            print(nombre_reporte)
+            nombre = vendedores[matricula]['nombre']
+            apellido = vendedores[matricula]['apellido']
+
+            AirForce = Ventas[matricula]['Air Force 1']
+            Yeezy = Ventas[matricula]['Yeezy']
+            UltraRangeExo = Ventas[matricula]['Ultra Range']
+            AirMax = Ventas[matricula]['Air Max']
+            RalphSampson = Ventas[matricula]['Ralph Sampson']
+            UltraBoost = Ventas[matricula]['Ultra Boost']
+            SkyveMax = Ventas[matricula]['Skyve Max']
+
+            reporte = open(nombre_reporte, 'w')
+            # texto = f'{vendedores[matricula]['nombre']}{ vendedores[matricula]['apellido']} \n {ventasVendedor[matricula]}'
+            texto = (
+                f'{nombre} {apellido}' + '\n' +
+                f'Air Force 1: {AirForce}'+'\n' +
+                f'Yeezy: {Yeezy}'+'\n' +
+                f'Ultra Range: {UltraRangeExo}'+'\n' +
+                f'Air Max 97: {AirMax}'+'\n' +
+                f'Ralph Sampson: {RalphSampson}'+'\n' +
+                f'Ultra Boost: {UltraBoost}'+'\n' +
+                f'Skyve: {SkyveMax}')
+            print('Archivo generado correctamente')
+            reporte.write(texto)
+            reporte.close()
+            break
+    else:
+        print('Matricula incorrecta ')
 
 
 # registrar_venta()
 # registrar_ingreso()
 # consultar_inventario()
 # consultar_articulo()
-consultar_vendedor()
-print(vendedores)
+# consultar_vendedor()
+# print(vendedores)
+reporte_ventas()
