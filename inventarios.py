@@ -1,3 +1,4 @@
+import conversor
 # seccion de inventario
 matriz = []
 archivo = open('inventarios.csv', 'r')
@@ -89,7 +90,7 @@ ventasVendedor = {}
 for i in listaVendedores:
     ventasVendedor[i] = ((Ventas[i]['Air Force 1'])+(Ventas[i]['Yeezy'])+(Ventas[i]['Ultra Range'])+(
         Ventas[i]['Air Max'])+(Ventas[i]['Ralph Sampson'])+Ventas[i]['Ultra Boost'] + Ventas[i]['Skyve Max'])
-print(ventasVendedor)
+# print(ventasVendedor)
 
 
 def registrar_venta():
@@ -190,10 +191,62 @@ def reporte_ventas():
         print('Matricula incorrecta ')
 
 
+def guardar_ventas():
+    for vendedor in Ventas:
+        texto =
+
+
+def volver_a_menu():
+    while True:
+        retu = input('<Presione X para regresar>')
+        if retu == 'X':
+            break
+    menu()
+
+
+def menu():
+    while True:
+        print('''
+    Menú principal
+    1. Registrar una venta
+    2. Registrar llegada de artículos al almacén
+    3. Consultar el inventario disponible
+    4. Consultar cuál es el modelo del artículo más vendido
+    5. Consultar cuál vendedor ha vendido una cantidad mayor de artículos
+    6. Reporte de ventas de un vendedor
+    7. conversor de tallas 
+    8. Salir del programa''')
+        while True:
+            opcion = int(input('Seleccione su opción:'))
+            if opcion == 1:
+                registrar_venta()
+                volver_a_menu()
+            elif opcion == 2:
+                registrar_ingreso()
+                volver_a_menu()
+            elif opcion == 3:
+                consultar_inventario()
+                volver_a_menu()
+            elif opcion == 4:
+                consultar_articulo()
+                volver_a_menu()
+            elif opcion == 5:
+                consultar_vendedor()
+                volver_a_menu()
+            elif opcion == 6:
+                reporte_ventas()
+                volver_a_menu()
+            elif opcion == 7:
+                conversor
+                volver_a_menu()
+            elif opcion == 8:
+                break
+
+
 # registrar_venta()
 # registrar_ingreso()
 # consultar_inventario()
 # consultar_articulo()
 # consultar_vendedor()
 # print(vendedores)
-reporte_ventas()
+# reporte_ventas()
