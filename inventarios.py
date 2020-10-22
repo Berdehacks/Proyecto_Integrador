@@ -20,11 +20,21 @@ for i in matriz:
     #     inventario[i[0]]['vendidos'].replace('\n', ''))
 
 # print(inventario)
+
 matrizVendedores = []
 archivoVendedores = open('vendedores.csv', 'r')
 for linea in archivoVendedores:
     matrizVendedores.append(linea.split(','))
 archivoVendedores.close()
+vendedores = {}
+for i in matrizVendedores:
+    # print(i[0])
+    vendedores[i[0]] = {
+        'nombre': i[1],
+        'apellido': i[2]
+    }
+    vendedores[i[0]]['apellido'] = (
+        vendedores[i[0]]['apellido'].replace('\n', ''))
 
 # seccion ventas
 
@@ -64,9 +74,7 @@ for modelo in inventario:
 
 
 ventasTotales = {}
-
 for i in listaModelos:
-
     ventasTotales = {
         'Air Force 1': ((Ventas['jp001']['Air Force 1'])+(Ventas['am002']['Air Force 1'])+(Ventas['ac003']['Air Force 1'])+(Ventas['er004']['Air Force 1'])+(Ventas['mh005']['Air Force 1'])),
         'Yeezy': ((Ventas['jp001']['Yeezy'])+(Ventas['am002']['Yeezy'])+(Ventas['ac003']['Yeezy'])+(Ventas['er004']['Yeezy'])+(Ventas['mh005']['Yeezy'])),
@@ -77,6 +85,11 @@ for i in listaModelos:
         'Skyve Max': ((Ventas['jp001']['Skyve Max'])+(Ventas['am002']['Skyve Max'])+(Ventas['ac003']['Skyve Max'])+(Ventas['er004']['Skyve Max'])+(Ventas['mh005']['Skyve Max']))}
 
 # print(ventasTotales)
+ventasVendedor = {}
+for i in listaVendedores:
+    ventasVendedor[i] = (
+        (Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1'])+(Ventas[i]['Air Force 1']))
+# print(ventasVendedor)
 
 
 def registrar_venta():
@@ -133,7 +146,22 @@ def consultar_articulo():
           ' con ', max_value, ' articulos vendidos')
 
 
+def consultar_vendedor():
+    max_value = max(ventasVendedor.values())  # maximum value
+    # getting all keys containing the `maximum`
+    max_keys = [k for k, v in ventasVendedor.items() if v == max_value]
+    print('El vendedor con mas ventas es: ', vendedores[max_keys[0]]['nombre'], vendedores[max_keys[0]]['apellido'],
+          ' con ', max_value, ' articulos vendidos')
+
+
+def reporte_ventas():
+    matricula =
+    reporte = open()
+
+
 # registrar_venta()
 # registrar_ingreso()
 # consultar_inventario()
 # consultar_articulo()
+consultar_vendedor()
+print(vendedores)
