@@ -6,7 +6,7 @@ archivo = open('inventarios.csv', 'r')
 for linea in archivo:
     matriz.append(linea.split(','))
 archivo.close()
-# print(matriz)
+print(matriz)
 
 inventario = {}
 for i in matriz:
@@ -15,11 +15,9 @@ for i in matriz:
         'marca': i[1],
         'talla': i[2],
         'color': i[3],
-        'cantidad': int(i[4]),
-        # 'vendidos': i[5]
-    }
-    # inventario[i[0]]['vendidos'] = (
-    #     inventario[i[0]]['vendidos'].replace('\n', ''))
+        'cantidad': int(i[4])}
+    # inventario[i[0]]['cantidad'] = (
+    #     inventario[i[0]]['cantidad'].replace('\n', ''))
 
 # print(inventario)
 
@@ -48,6 +46,7 @@ archivoVentas.close()
 # print(matrizVentas)
 
 Ventas = {}
+print(matrizVentas)
 for i in matrizVentas:
     # print(i[0])
     Ventas[i[0]] = {
@@ -60,7 +59,7 @@ for i in matrizVentas:
         'Skyve Max': int(i[7])}
     # Ventas[i[0]]['vendidos'] = (
     # inventario[i[0]]['VSkyve'].replace('\n', ''))
-print(Ventas)
+# print(Ventas)
 
 
 # seccion vendedores
@@ -118,10 +117,10 @@ def registrar_venta():
 
 
 def registrar_ingreso():
-    modelo = input('Ingrese modelo: ')
-    cantidad = int(input('Ingrese Cantidad: '))
     while True:
+        modelo = input('Ingrese modelo: ')
         if (modelo in listaModelos):
+            cantidad = int(input('Ingrese Cantidad: '))
             # ADD verificacion modelo
             inventario[modelo]['cantidad'] = (
                 inventario[modelo]['cantidad']) + cantidad
@@ -130,6 +129,7 @@ def registrar_ingreso():
             break
         else:
             print('modelo invalido')
+            continue
 
 
 def consultar_inventario():
@@ -193,16 +193,35 @@ def reporte_ventas():
 
 
 def guardar_ventas():
-    for vendedor in Ventas:
-        texto = (
-            f'{Ventas[[0]]},'
-        )
+    archivoNuevo = open('Ventas.csv', 'w')
+    texto = (f'''jp001,{Ventas['jp001']['Air Force 1']},{Ventas['jp001']['Yeezy']},{Ventas['jp001']['Ultra Range']},{Ventas['jp001']['Air Max']},{Ventas['jp001']['Ralph Sampson']},{Ventas['jp001']['Ultra Boost']},{Ventas['jp001']['Skyve Max']}
+am002,{Ventas['am002']['Air Force 1']},{Ventas['am002']['Yeezy']},{Ventas['am002']['Ultra Range']},{Ventas['am002']['Air Max']},{Ventas['am002']['Ralph Sampson']},{Ventas['am002']['Ultra Boost']},{Ventas['am002']['Skyve Max']}
+ac003,{Ventas['ac003']['Air Force 1']},{Ventas['ac003']['Yeezy']},{Ventas['ac003']['Ultra Range']},{Ventas['ac003']['Air Max']},{Ventas['ac003']['Ralph Sampson']},{Ventas['ac003']['Ultra Boost']},{Ventas['ac003']['Skyve Max']}
+er004,{Ventas['er004']['Air Force 1']},{Ventas['er004']['Yeezy']},{Ventas['er004']['Ultra Range']},{Ventas['er004']['Air Max']},{Ventas['er004']['Ralph Sampson']},{Ventas['er004']['Ultra Boost']},{Ventas['er004']['Skyve Max']}
+mh005,{Ventas['mh005']['Air Force 1']},{Ventas['mh005']['Yeezy']},{Ventas['mh005']['Ultra Range']},{Ventas['mh005']['Air Max']},{Ventas['mh005']['Ralph Sampson']},{Ventas['mh005']['Ultra Boost']},{Ventas['mh005']['Skyve Max']}''')
+    archivoNuevo.write(texto)
+    archivoNuevo.close()
+    # print(texto)
+
+
+def guardar_inventario():
+    archivoNuevo = open('Inventarios.csv', 'w')
+    texto = (f'''Air Force 1,{inventario['Air Force 1']['marca']},{inventario['Air Force 1']['talla']},{inventario['Air Force 1']['color']},{inventario['Air Force 1']['cantidad']}
+Yeezy,{inventario['Yeezy']['marca']},{inventario['Yeezy']['talla']},{inventario['Yeezy']['color']},{inventario['Yeezy']['cantidad']}
+Ultra Range Exo,{inventario['Ultra Range Exo']['marca']},{inventario['Ultra Range Exo']['talla']},{inventario['Ultra Range Exo']['color']},{inventario['Ultra Range Exo']['cantidad']}
+Air Max 97,{inventario['Air Max 97']['marca']},{inventario['Air Max 97']['talla']},{inventario['Air Max 97']['color']},{inventario['Air Max 97']['cantidad']}
+Ralph Sampson,{inventario['Ralph Sampson']['marca']},{inventario['Ralph Sampson']['talla']},{inventario['Ralph Sampson']['color']},{inventario['Ralph Sampson']['cantidad']}
+Ultra Boost,{inventario['Ultra Boost']['marca']},{inventario['Ultra Boost']['talla']},{inventario['Ultra Boost']['color']},{inventario['Ultra Boost']['cantidad']}
+Skyve Max,{inventario['Skyve Max']['marca']},{inventario['Skyve Max']['talla']},{inventario['Skyve Max']['color']},{inventario['Skyve Max']['cantidad']}''')
+    archivoNuevo.write(texto)
+    archivoNuevo.close()
+    # print(texto)
 
 
 def volver_a_menu():
     while True:
         retu = input('<Presione X para regresar>')
-        if retu == 'X':
+        if retu == 'x':
             break
     menu()
 
@@ -243,11 +262,12 @@ def menu():
                 import conversor
                 volver_a_menu()
             elif opcion == 8:
-                break
+                guardar_ventas()
+                guardar_inventario()
+                exit()
 
 
-# menu()
-
+menu()
 # registrar_venta()
 # registrar_ingreso()
 # consultar_inventario()
@@ -255,3 +275,6 @@ def menu():
 # consultar_vendedor()
 # print(vendedores)
 # reporte_ventas()
+# guardar_ventas()
+# guardar_inventario()
+# print(inventario)
