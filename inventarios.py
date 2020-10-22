@@ -1,4 +1,5 @@
-import conversor
+#
+
 # seccion de inventario
 matriz = []
 archivo = open('inventarios.csv', 'r')
@@ -59,7 +60,7 @@ for i in matrizVentas:
         'Skyve Max': int(i[7])}
     # Ventas[i[0]]['vendidos'] = (
     # inventario[i[0]]['VSkyve'].replace('\n', ''))
-# print(Ventas)
+print(Ventas)
 
 
 # seccion vendedores
@@ -193,7 +194,9 @@ def reporte_ventas():
 
 def guardar_ventas():
     for vendedor in Ventas:
-        texto =
+        texto = (
+            f'{Ventas[[0]]},'
+        )
 
 
 def volver_a_menu():
@@ -237,11 +240,13 @@ def menu():
                 reporte_ventas()
                 volver_a_menu()
             elif opcion == 7:
-                conversor
+                import conversor
                 volver_a_menu()
             elif opcion == 8:
                 break
 
+
+# menu()
 
 # registrar_venta()
 # registrar_ingreso()
