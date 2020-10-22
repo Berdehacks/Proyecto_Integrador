@@ -39,13 +39,13 @@ Ventas = {}
 for i in matrizVentas:
     # print(i[0])
     Ventas[i[0]] = {
-        'VAirForce1': int(i[1]),
-        'VYeezy': int(i[2]),
-        'VUltraR': int(i[3]),
-        'VMax': int(i[4]),
-        'VRalph': int(i[5]),
-        'VUltraB': int(i[6]),
-        'VSkyve': int(i[7])}
+        'Air Force 1': int(i[1]),
+        'Yeezy': int(i[2]),
+        'Ultra Range': int(i[3]),
+        'Air Max': int(i[4]),
+        'Ralph Sampson': int(i[5]),
+        'Ultra Boost': int(i[6]),
+        'Skyve Max': int(i[7])}
     # Ventas[i[0]]['vendidos'] = (
     # inventario[i[0]]['VSkyve'].replace('\n', ''))
 # print(Ventas)
@@ -62,10 +62,21 @@ for modelo in inventario:
     listaModelos.append(modelo)
 # print(listaModelos)
 
+
 ventasTotales = {}
-for i, j in zip(listaModelos, listaVendedores):
-    ventasTotales[i] = 0 + Ventas[i][j]
-print(ventasTotales)
+
+for i in listaModelos:
+
+    ventasTotales = {
+        'Air Force 1': ((Ventas['jp001']['Air Force 1'])+(Ventas['am002']['Air Force 1'])+(Ventas['ac003']['Air Force 1'])+(Ventas['er004']['Air Force 1'])+(Ventas['mh005']['Air Force 1'])),
+        'Yeezy': ((Ventas['jp001']['Yeezy'])+(Ventas['am002']['Yeezy'])+(Ventas['ac003']['Yeezy'])+(Ventas['er004']['Yeezy'])+(Ventas['mh005']['Yeezy'])),
+        'Ultra Range': ((Ventas['jp001']['Ultra Range'])+(Ventas['am002']['Ultra Range'])+(Ventas['ac003']['Ultra Range'])+(Ventas['er004']['Ultra Range'])+(Ventas['mh005']['Ultra Range'])),
+        'Air Max': ((Ventas['jp001']['Air Max'])+(Ventas['am002']['Air Max'])+(Ventas['ac003']['Air Max'])+(Ventas['er004']['Air Max'])+(Ventas['mh005']['Air Max'])),
+        'Ralph Sampson': ((Ventas['jp001']['Ralph Sampson'])+(Ventas['am002']['Ralph Sampson'])+(Ventas['ac003']['Ralph Sampson'])+(Ventas['er004']['Ralph Sampson'])+(Ventas['mh005']['Ralph Sampson'])),
+        'Ultra Boost': ((Ventas['jp001']['Ultra Boost'])+(Ventas['am002']['Ultra Boost'])+(Ventas['ac003']['Ultra Boost'])+(Ventas['er004']['Ultra Boost'])+(Ventas['mh005']['Ultra Boost'])),
+        'Skyve Max': ((Ventas['jp001']['Skyve Max'])+(Ventas['am002']['Skyve Max'])+(Ventas['ac003']['Skyve Max'])+(Ventas['er004']['Skyve Max'])+(Ventas['mh005']['Skyve Max']))}
+
+# print(ventasTotales)
 
 
 def registrar_venta():
@@ -114,6 +125,15 @@ def consultar_inventario():
         print('modelo invalido')
 
 
+def consultar_articulo():
+    max_value = max(ventasTotales.values())  # maximum value
+    # getting all keys containing the `maximum`
+    max_keys = [k for k, v in ventasTotales.items() if v == max_value]
+    print('los articulos con mas ventas son: ', max_keys,
+          ' con ', max_value, ' articulos vendidos')
+
+
 # registrar_venta()
 # registrar_ingreso()
 # consultar_inventario()
+# consultar_articulo()
